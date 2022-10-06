@@ -6,27 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RestController
 @RequestMapping
 public class EmployeeController
 {
     @Autowired
     EmployeeService employeeService;
 
-    @GetMapping("/employee")
-    private List<Object> getAllEmployee()
+    @GetMapping("/employees")
+    private List<Employee> getAllEmployee()
     {
         return employeeService.getAllEmployee();
     }
     @GetMapping("/employee/{id}")
-    private Employee getEmployee(@PathVariable("id")int id)
+    private Employee getEmployee(@PathVariable("id") int empId)
     {
-        return employeeService.getEmployeeById(id);
+        return employeeService.getEmployeeById(empId);
     }
     @GetMapping("/employee1")
-    private Employee getEmployeeById(@RequestParam("id")int id)
+    private Employee getEmployeeById(@RequestParam("id")int empId)
     {
-        return employeeService.getEmployeeById(id);
+        return employeeService.getEmployeeById(empId);
     }
     @GetMapping("/employee2")
     private Employee getEmployeeByEmail(@RequestParam("email")String email)
@@ -44,19 +44,19 @@ public class EmployeeController
         return employeeService.getEmployeeByName(name);
     }
     @GetMapping("/employee5")
-    private Employee getEmployeeByIdANdName(@RequestParam("id")int id,@RequestParam("name")String name)
+    private Employee getEmployeeByIdANdName(@RequestParam("id")int empId,@RequestParam("name")String name)
     {
-        return employeeService.getEmployeeByIdAndName(id,name);
+        return employeeService.getEmployeeByIdAndName(empId,name);
     }
-    @DeleteMapping("/employee/{id}")
-    private void deleteEmployee(@PathVariable("id")int id)
+    @DeleteMapping("/employee6/{id}")
+    private void deleteEmployee(@PathVariable("id")int empId)
     {
-         employeeService.delete(id);
+         employeeService.delete(empId);
     }
-    @PostMapping("/employee")
-    private int saveEmployee(@RequestBody Employee employee)
+    @PostMapping("/employeeDetails")
+    private Employee saveEmployee(@RequestBody Employee employee)
     {
-        employeeService.saveOrUpdate(employee);
-        return Employee.getId();
+     Employee emp=  employeeService.saveOrUpdate(employee);
+     return emp;
     }
 }

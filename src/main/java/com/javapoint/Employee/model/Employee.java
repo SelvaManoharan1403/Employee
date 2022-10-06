@@ -1,22 +1,25 @@
 package com.javapoint.Employee.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="employee")
 public class Employee
 {
     @Id
-    private static int id;
+    private  String id;
+    @Indexed(unique = true)
+    private int empId;
     private String name;
     private int age;
     private String email;
 
-    public static int getId() {
+    public  String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -26,6 +29,14 @@ public class Employee
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
     }
 
     public int getAge() {

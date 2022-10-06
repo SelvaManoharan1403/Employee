@@ -13,22 +13,24 @@ public class EmployeeService
 {
     @Autowired
     EmployeeRepository employeeRepository;
-    public List<Object> getAllEmployee()
+    public List<Employee> getAllEmployee()
     {
-        List<Object> employees =new ArrayList<>();
+        List<Employee> employees = new ArrayList<Employee>();
         employeeRepository.findAll().forEach(employee -> employees.add(employee));
         return employees;
     }
-    public Employee getEmployeeById(int id)
+    public Employee getEmployeeById(int empId)
     {
-        return (Employee) employeeRepository.findById(id).get();
+        return employeeRepository.findByEmpId(empId);
     }
-    public void saveOrUpdate(Employee employee){
-        employeeRepository.save(employee);
-    }
-    public void delete(int id)
+    public Employee saveOrUpdate(Employee employee)
     {
-        employeeRepository.deleteById(id);
+      Employee emp=  employeeRepository.save(employee);
+      return emp;
+    }
+    public Employee delete(int empId)
+    {
+      return employeeRepository.deleteById(empId);
     }
     public Employee getEmployeeByName(String name)
     {
@@ -42,8 +44,8 @@ public class EmployeeService
     {
         return employeeRepository.findByAge(age);
     }
-    public Employee getEmployeeByIdAndName(int id,String name)
+    public Employee getEmployeeByIdAndName(int empId,String name)
     {
-        return employeeRepository.findByIdAndName(id,name);
+        return employeeRepository.findByIdAndName(empId,name);
     }
 }
