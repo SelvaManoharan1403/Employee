@@ -11,9 +11,10 @@ public interface EmployeeRepository extends MongoRepository<Employee,String> {
 
     Employee findByAge(int age);
 
-    Employee findByIdAndName(int empId, String name);
+    Employee findByNameAndAge(String name, int age);
+
+
+    Employee deleteByName(String name);
 
     Employee findByEmpId(int empId);
-
-    Employee deleteById(int empId);
 }

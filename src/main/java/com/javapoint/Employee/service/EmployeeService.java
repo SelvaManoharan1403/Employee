@@ -28,9 +28,9 @@ public class EmployeeService
       Employee emp=  employeeRepository.save(employee);
       return emp;
     }
-    public Employee delete(int empId)
+    public Employee delete(String name)
     {
-      return employeeRepository.deleteById(empId);
+      return employeeRepository.deleteByName(name);
     }
     public Employee getEmployeeByName(String name)
     {
@@ -44,8 +44,8 @@ public class EmployeeService
     {
         return employeeRepository.findByAge(age);
     }
-    public Employee getEmployeeByIdAndName(int empId,String name)
+    public Employee getEmployeeByNameAndAge(String name, int age)
     {
-        return employeeRepository.findByIdAndName(empId,name);
+        return employeeRepository.findByNameAndAge(name,age);
     }
 }

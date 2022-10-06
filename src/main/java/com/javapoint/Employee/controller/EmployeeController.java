@@ -44,14 +44,15 @@ public class EmployeeController
         return employeeService.getEmployeeByName(name);
     }
     @GetMapping("/employee5")
-    private Employee getEmployeeByIdANdName(@RequestParam("id")int empId,@RequestParam("name")String name)
+    private Employee getEmployeeByNameANdAge(@RequestParam("name")String name,@RequestParam("age")int age)
     {
-        return employeeService.getEmployeeByIdAndName(empId,name);
+
+         return employeeService.getEmployeeByNameAndAge(name,age);
     }
-    @DeleteMapping("/employee6/{id}")
-    private void deleteEmployee(@PathVariable("id")int empId)
+    @DeleteMapping("/employee6/{name}")
+    private void deleteEmployee(@PathVariable("name")String name)
     {
-         employeeService.delete(empId);
+         employeeService.delete(name);
     }
     @PostMapping("/employeeDetails")
     private Employee saveEmployee(@RequestBody Employee employee)
